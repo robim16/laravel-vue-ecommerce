@@ -105,19 +105,17 @@ class CartController extends Controller
         $quantity = (int)$request->post('quantity');
         $user = $request->user();
         if ($user) {
-            CartItem::where(['user_id' => $request->user()->id, 'product_id' 
-                => $product->id])->update(['quantity' => $quantity]);
+            CartItem::where(['user_id' => $request->user()->id, 'product_id' => $product->id])->update(['quantity' => $quantity]);
 
             return response([
                 'count' => Cart::getCartItemsCount(),
             ]);
-        }
-        else{
-            $cartItems = json_decode($request->cookie('cart_items', '[]', true));
+        } else {
+            $cartItems = json_decode($request->cookie('cart_items', '[]'), true);
             foreach ($cartItems as &$item) {
                 if ($item['product_id'] === $product->id) {
-                   $item['quantity'] = $quantity;
-                   break;
+                    $item['quantity'] = $quantity;
+                    break;
                 }
             }
             Cookie::queue('cart_items', json_encode($cartItems), 60 * 24 * 30);
