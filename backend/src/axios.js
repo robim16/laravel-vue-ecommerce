@@ -6,7 +6,7 @@ import store from "./store";
 import router from "./router/index.js";
 
 const axiosClient = axios.create({
-  baseURL: /*`${import.meta.env.VITE_API_BASE_URL}/api`*/ `http://127.0.0.1:8000/`
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`
 })
 
 axiosClient.interceptors.request.use(config => {
