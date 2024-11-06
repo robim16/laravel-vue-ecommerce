@@ -96,8 +96,8 @@
   const emit = defineEmits(['update:modelValue', 'close'])
   
   const show = computed({
-    get: () => props.modelValue,
-    set: (value) => emit('update:modelValue', value)
+    get: () => props.modelValue,//booleano para mostrar el modal
+    set: (value) => emit('update:modelValue', value)//setea el v-model (se actualiza el booleano)
   })
   
   onUpdated(() => {
@@ -109,7 +109,7 @@
   })
   
   function closeModal() {
-    show.value = false
+    show.value = false//se setea el v-model. La función computada al detectar el cambio emite un evento
     emit('close')
   }
   

@@ -115,7 +115,7 @@
     ordersByCountry: true,
     latestCustomers: true,
     latestOrders: true
-  })
+  })//loading for all data
   const customersCount = ref(0);
   const productsCount = ref(0);
   const paidOrders = ref(0);
@@ -183,7 +183,7 @@
   }
   
   function onDatePickerChange() {
-    updateDashboard()
+    updateDashboard()//al cambiar las fecha se envía un nuevo request a la api
   }
   
   onMounted(() => updateDashboard())
